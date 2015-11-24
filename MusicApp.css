@@ -1,0 +1,39 @@
+.navbar-default1 {
+    background-color: #F8F8F8;
+    border-color: #E7E7E7;
+}
+.navbar-custom {
+    background-color:#4682B4;
+    color:#ffffff;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+
+
+
+table, td, th {
+
+    border: 2px solid grey;
+    text-align: center;
+    padding: 10px;
+}
+
+th {
+    background-color: #4682B4;
+    color: white;
+}
+
+  table {
+    margin-left:20%;
+    margin-right:auto;
+  }
