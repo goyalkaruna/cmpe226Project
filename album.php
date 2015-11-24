@@ -2,10 +2,11 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="bootstrap.js"></script>
-    <script type="text/javascript" src="bootstrap.min.js"></script>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="MusicApp.css" rel="stylesheet">
+
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="MusicApp.css" rel="stylesheet">
     <title>Albums</title>
 </head>
 
