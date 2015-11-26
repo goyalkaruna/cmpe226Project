@@ -69,14 +69,8 @@
 
     <p>
         <?php
+          include ('include/dbConnect.php');
 
-
-            try {
-                // Connect to the database.
-                $con = new PDO("mysql:host=localhost;dbname=jukebox",
-                               "root", "");
-                $con->setAttribute(PDO::ATTR_ERRMODE,
-                                   PDO::ERRMODE_EXCEPTION);
 
                     $query = "SELECT * FROM artist";
                     // Query the database.
@@ -87,6 +81,7 @@
                     echo "<tr><th>Artist Name</th><th>List</th></tr>";
                     foreach( $data as $row) {
                         echo "<tr>";
+                        echo "<td>".$row['artist_id']."</td>";
                         echo "<td>".$row['name']."</td>";
                         echo "<td><a>View My Albums</a></td>";
                         echo "</tr>\n";
@@ -94,10 +89,6 @@
 
                     echo "</table>";
 
-      }
-        catch(PDOException $ex) {
-            echo 'ERROR: '.$ex->getMessage();
-        }
     ?>
 
 </p>

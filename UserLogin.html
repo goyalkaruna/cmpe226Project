@@ -7,30 +7,17 @@
 <script type="text/javascript" src="bootstrap.js"></script>
 <script type="text/javascript" src="bootstrap.min.js"></script>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<style>
-.navbar-default1 {
-    background-color: #F8F8F8;
-    border-color: #E7E7E7;
-}
-.navbar-custom {
-    background-color:#4682B4;
-    color:#ffffff;
-    border-radius:0;
+<link href="MusicApp.css" rel="stylesheet">
+<script>
+function clearForm()
+{
+    $(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio').val('');
+    $(':checkbox, :radio').prop('checked', false);
 }
 
-.navbar-custom .navbar-nav > li > a {
-    color:#fff;
-}
-.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
-    color: #ffffff;
-    background-color:transparent;
-}
-.navbar-custom .navbar-brand {
-    color:#eeeeee;
-}
-</style>
+</script>
 </head>
-<body align="center">
+<body align="center" onload="form.reset();">
 <nav class="navbar navbar-custom">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -84,12 +71,16 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+<?php
+header( 'Cache-Control: no-store, no-cache, must-revalidate' );
+header( 'Cache-Control: post-check=0, pre-check=0', false );
+header( 'Pragma: no-cache' );
+?>
 
      <marquee>  </marquee>
    <form action="userLogin.php"
           method= "post">
-	
+
         <fieldset align="center">
                     <legend >USER LOGIN</legend>
 			               <p>
@@ -100,11 +91,12 @@
 			                   <label><B>password :</B></label>
 			                   <input name="password" type="password" placeholder="********" />
 			               </p>
-			             
+
 
 					    <p>
 						<input type="submit" value="Login" ></input>
-						<button onclick="#">Cancel</button>
+						<button onclick="clearForm();">Cancel</button>
+            <input class="btn btn-small " onclick="clearForm();" type="reset" value="Reset">
 					    </p>
               </fieldset>
     </form>

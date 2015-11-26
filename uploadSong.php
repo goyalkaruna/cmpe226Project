@@ -66,50 +66,64 @@
 
 <?php
 
-header( 'Cache-Control: no-store, no-cache, must-revalidate' );
-header( 'Cache-Control: post-check=0, pre-check=0', false );
-header( 'Pragma: no-cache' );
+
 include ('include/dbConnect.php');
-session_start();
 
-             $email     = filter_input(INPUT_POST, "email");
-             $password     = filter_input(INPUT_POST, "password");
 
-             if($email&&$password){
+             $title  = filter_input(INPUT_POST, "title");
+             $duration = filter_input(INPUT_POST, "duration");
+              $genre  = filter_input(INPUT_POST, "genre");
+              $audio_url = filter_input(INPUT_POST, "audio_url");
+              $video_url = filter_input(INPUT_POST, "video_url");
+              $language = filter_input(INPUT_POST, "language");
 
-             $query = "SELECT * FROM User WHERE email = '$email' AND   password  = '$password'";
+              $queryGenre ="SELECT * FROM Genre where type = '$genre'";
+              $result = $con->query($queryGenre);
+              $row = $result->fetch(PDO::FETCH_ASSOC);
+              $genre_id = $row['genre_id'];
+              print 'genre id is'.$genre_id;
 
-                // Fetch the database field names.
-                $result = $con->query($query);
+              //Checking Audio URL submitted by User
+              if($audio_url){
+                $queryAudio ="SELECT * FROM audio where data = '$audio_url'";
+                $result = $con->query($queryAudio);
                 $row = $result->fetch(PDO::FETCH_ASSOC);
-
-                if($row <= 0){
-                  print "<p>Username or password is invalid!!<br></p>";
-                }
-                else{
-                $data = $con->query($query);
-                $data->setFetchMode(PDO::FETCH_ASSOC);
-                 session_regenerate_id();
-                $_SESSION['sess_name'] = $row['name'];
-                $_SESSION['sess_email'] = $row['email'];
-                $_SESSION['sess_userrole'] = $row['role'];
-
-                echo $_SESSION['sess_userrole'];
-
-                  session_write_close();
-
-                if( $_SESSION['sess_userrole'] == "artist"){
-                header("Location: /cmpe226/homeSU.html");
+                if($row){
+                  $audio_id = $row['audio_id'];
+                  print '\naudio id is '.$audio_id;
                 }else{
-                 header("Location: /cmpe226/home.html");
-                }
+              $sql_audio = "INSERT INTO audio(data) VALUES('$audio_url')";
+              $con->exec($sql_audio);
+              $audio_id = $con->lastInsertId();
+              echo "\nNew record created successfully. Last inserted ID is: " . $audio_id;
+               }
+             }else{
+               $audio_id = 0;
+             }
 
+              // Check on Video URL subitted by user
+              if($video_url){
+              $queryVideo ="SELECT * FROM video where data = '$video_url'";
+              $result = $con->query($queryVideo);
+              $row = $result->fetch(PDO::FETCH_ASSOC);
+              if($row){
+                $video_id = $row['video_id'];
+                print '\n video id is '.$video_id;
+              }else{
+              $sql_video = "INSERT INTO video(data) VALUES('$video_url')";
+              $con->exec($sql_video);
+              $video_id= $con->lastInsertId();
+              echo "<p> New record created successfully. Last inserted ID is:<p></br> " . $video_id;
               }
-
-              }else
-                die("<p>Please enter username and password!!</p>");
-
-
+            }else{
+              $video_id =0;
+            }
+                if($title && $duration && $genre && $language && $video_id){
+              $sql_video = "INSERT INTO song(title, duration, genre_id, video_id, audio_id, language) VALUES('$title', '$duration','$genre_id','$video_id','audio_id', '$language')";
+              $con->exec($sql_video);
+              echo "<p> New record created in the song table successfully. <p></br> " ;
+              header("Location: /cmpe226/newUpload.html");
+                }
 
       ?>
    </body>

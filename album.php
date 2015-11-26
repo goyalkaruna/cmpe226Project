@@ -69,15 +69,10 @@
 
     <p>
         <?php
+           include ('include/dbConnect.php');
 
-            try {
-                // Connect to the database.
-                $con = new PDO("mysql:host=localhost;dbname=jukebox",
-                               "root", "");
-                $con->setAttribute(PDO::ATTR_ERRMODE,
-                                   PDO::ERRMODE_EXCEPTION);
 
-                    $query = "SELECT * FROM album";
+                    $query = "SELECT * FROM album, image , publisher WHERE album.cover_image_id = image_id AND publisher.publisher_id = album.publisher_id";
 
 
                 // We're going to construct an HTML table.
@@ -96,23 +91,26 @@
                     if ($doHeader) {
 
                       echo "<table>";
-                      echo "<tr><th>Album</th><th>Released on</th><th>Details</th></tr>";
+                      echo "<tr><th>Image</th><th>Album Name</th><th>Publisher</th><th>Released on</th><th>songs</th></tr>";
                       foreach( $data as $row) {
                           echo "<tr>";
+                          echo "<td>".$row['album_id']."</td>";
+                          echo "<td><img src =".$row['data']."></td>";
                           echo "<td>".$row['title']."</td>";
+                          echo "<td>".$row['name']."</td>";
                           echo "<td>".$row['released_date']."</td>";
-                          echo "<td><a>View My songs</a></td>";
+
+                          echo "<td><a>Songs</a></td>";
                           echo "</tr>\n";
                       }
 
                       echo "</table>";
+}else{
+  echo "<p> Error</p>";
 }
 }
 
-    }
-            catch(PDOException $ex) {
-                echo 'ERROR: '.$ex->getMessage();
-            }
+
         ?>
     </p>
   </div>
