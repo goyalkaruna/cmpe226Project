@@ -82,7 +82,9 @@
 								
 								$query = "SELECT Song.title, Album.title, Artist.name, Review.score, Review.description  FROM Song, Album, Artist, Review, AlbumSong, ArtistAlbum
 							WHERE Review.score = 5 AND Review.song_id =  Song.song_id AND Song.song_id = AlbumSong.song_id AND ArtistAlbum.album_id = AlbumSong.album_id AND 
-							Album.album_id = ArtistAlbum.album_id";
+							Album.album_id = ArtistAlbum.album_id
+							GROUP BY Song.title
+							ORDER BY 1 DESC LIMIT 20";
 								
 								// We're going to construct an HTML table.
 								print "<table>\n";
