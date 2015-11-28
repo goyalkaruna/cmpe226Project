@@ -7,7 +7,7 @@
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="MusicApp.css" rel="stylesheet">
-<title>Top 20</title>
+<title>Player</title>
 </head>
 
 <body>
@@ -72,7 +72,7 @@
 	<div class="container">
 		<h3>
 			<p class="lead">
-				<I>Top 20 Songs</I>
+				<I>Player</I>
 			</p>
 		</h3>
 
@@ -80,10 +80,7 @@
         <?php
 								include ('include/dbConnect.php');
 								
-								$query = "SELECT Song.song_id, Song.title, Review.score, Review.description  FROM Song, Review
-							WHERE Review.song_id =  Song.song_id
-							GROUP BY Song.title, Review.score
-							ORDER BY 3 DESC LIMIT 20";
+								$query = "SELECT data FROM Video ORDER BY RAND() LIMIT 1";
 								
 								// We're going to construct an HTML table.
 								print "<table>\n";
@@ -95,24 +92,30 @@
 								// Construct the HTML table row by row.
 								// Start with a header row.
 								$doHeader = true;
-									// The header row before the first data row.
-									if ($doHeader) {
+								
+								// The header row before the first data row.
+								if ($doHeader) {
+									
+									echo "<table>";
+									echo "<tr><th>Video URL</th></tr>";
+									foreach ( $data as $row ) {
+										echo "<tr>";
+										echo "<td>" . $row ['data'] . "</td>";
+										echo "<td>" . $row ['data'] . "</td>";
 										
-										echo "<table>";
-										echo "<tr><th>Song Title</th><th>Review Score</th><th>Review Description</th></tr>";
-										foreach ( $data as $row ) {
-											echo "<tr>";
-											echo "<td>" . $row ['song_id'] . "</td>";
-											echo "<td>" . $row ['title'] . "</td>";
-											echo "<td>" . $row ['score'] . "</td>";
-											echo "<td>" . $row ['description'] . "</td>";
-											echo "</tr>\n";
-										}
+										echo "</tr>\n";
 										
 										echo "</table>";
-									} else {
-										echo "<p> Error</p>";
+										
+										$url = str_replace ( "https://www.youtube.com/watch?v=", "", $row ['data'] );
+										
+										echo "<iframe width='640' height='480'  frameborder='0' 
+										allowfullscreen src='http://www.youtube.com/embed/".$url."?autoplay=1'></iframe>";
+										
 									}
+								} else {
+									echo "<p> Error</p>";
+								}
 								
 								?>
     </p>
