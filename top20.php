@@ -80,7 +80,7 @@
         <?php
 								include ('include/dbConnect.php');
 								
-								$query = "SELECT Song.title, Album.title, Artist.name, Review.score, Review.description  FROM Song, Album, Artist, Review, AlbumSong, ArtistAlbum
+								$query = "SELECT Song.song_id, Song.title, Artist.name, Review.score, Review.description  FROM Song, Album, Artist, Review, AlbumSong, ArtistAlbum
 							WHERE Review.score = 5 AND Review.song_id =  Song.song_id AND Song.song_id = AlbumSong.song_id AND ArtistAlbum.album_id = AlbumSong.album_id AND 
 							Album.album_id = ArtistAlbum.album_id
 							GROUP BY Song.title
@@ -102,16 +102,14 @@
 									if ($doHeader) {
 										
 										echo "<table>";
-										echo "<tr><th>Song Title</th><th>Album Name</th><th>Artist Name</th><th>Review Score</th><th>Review Description</th></tr>";
+										echo "<tr><th>Song Title</th><th>Artist Name</th><th>Review Score</th><th>Review Description</th></tr>";
 										foreach ( $data as $row ) {
 											echo "<tr>";
-											echo "<td>" . $row ['title'] . "</td>";
+											echo "<td>" . $row ['song_id'] . "</td>";
 											echo "<td>" . $row ['title'] . "</td>";
 											echo "<td>" . $row ['name'] . "</td>";
 											echo "<td>" . $row ['score'] . "</td>";
 											echo "<td>" . $row ['description'] . "</td>";
-											
-											echo "<td><a>Songs</a></td>";
 											echo "</tr>\n";
 										}
 										

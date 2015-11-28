@@ -71,7 +71,7 @@
         <?php
            include ('include/dbConnect.php');
 
-                    $query = "SELECT Jukebox.user_id, UserAlbum.title, Song.title FROM Jukebox, JukeBoxUserAlbum , UserAlbum, UserAlbumSong, Song WHERE Jukebox.jukebox_id = JukeBoxUserAlbum.jukebox_id 
+                    $query = "SELECT Jukebox.user_id, UserAlbum.title, Song.title as stitle FROM Jukebox, JukeBoxUserAlbum , UserAlbum, UserAlbumSong, Song WHERE Jukebox.jukebox_id = JukeBoxUserAlbum.jukebox_id 
 								AND JukeBoxUserAlbum.user_album_id = UserAlbum.user_album_id AND UserAlbum.user_album_id = UserAlbumSong.user_album_id 
 								AND UserAlbumSong.song_id = Song.song_id
                     				ORDER BY 1 DESC";
@@ -97,10 +97,10 @@
                       foreach( $data as $row) {
                           echo "<tr>";
                           echo "<td>".$row['user_id']."</td>";
+                          echo "<td>".$row['user_id']."</td>";
                           echo "<td>".$row['title']."</td>";
-                          echo "<td>".$row['title']."</td>";
-
-                          echo "<td><a>Songs</a></td>";
+                          echo "<td>".$row['stitle']."</td>";
+                          
                           echo "</tr>\n";
                       }
 

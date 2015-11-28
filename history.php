@@ -93,10 +93,10 @@
                       foreach( $data as $row) {
                           echo "<tr>";
                           echo "<td>".$row['user_id']."</td>";
+                          echo "<td>".$row['user_id']."</td>";
                           echo "<td>".$row['title']."</td>";
                           echo "<td>".$row['played_at']."</td>";
-
-                          echo "<td><a>Songs</a></td>";
+                          
                           echo "</tr>\n";
                       }
 
