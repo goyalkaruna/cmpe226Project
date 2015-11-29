@@ -36,7 +36,7 @@ if(!isset($_SESSION['sess_name'])){
       <ul class="nav navbar-nav">
 
         <li class="username"><a class="active" href="home.php"><B>Hi <?php  echo $_SESSION['sess_name']; ?> </B></a></li>
-	<li><a href="history.php">My History</a></li>
+	
       </ul>
 
       <ul class="nav navbar-nav navbar-left active">
@@ -45,7 +45,7 @@ if(!isset($_SESSION['sess_name'])){
       </ul>
       <ul class="nav navbar-nav navbar-left active">
         <li class="active"><a href="albums.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
-
+	<li><a href="history.php">My History</a></li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
   <li class="active"><a href="search.html"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
@@ -60,15 +60,7 @@ if(!isset($_SESSION['sess_name'])){
 <div class="container">
 
   <h3><p class="lead"><I>Upload a song !!!</I> </p></h3>
-  <!-- <?php
-  $msg = $_GET["msg"] ;
-  if($msg != ' '){
-   echo "<p> Success " .$msg.  " </p>";
-   echo $_GET['msg'] ;
- }else{
-   echo " old ";
- }
-   ?> -->
+
                                 <div class="progress progress-xs m-t-md">
                                   <div class="progress-bar bg-success" style="width: 100%;"></div>
                                 </div>
@@ -99,8 +91,7 @@ if(!isset($_SESSION['sess_name'])){
                                      <option value="Japanese">Japanese</option>
                                      <option value="Korean">Korean</option>
                                    </select></div></br>
-                                   <div><label class="col-sm-2 label-sm"><Strong>Audio url</Strong></label>
-                                   <input type="text" name="audio_url" size="60" placeholder="http://........"><br /> <br /></div>
+
 
                                    <div>
                                    <label class="col-sm-2 label-sm"><Strong>Video url<span id="required">*</span> </Strong></label>

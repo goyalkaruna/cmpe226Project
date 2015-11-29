@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if(!isset($_SESSION['sess_name'])){
@@ -37,7 +36,7 @@ if(!isset($_SESSION['sess_name'])){
       <ul class="nav navbar-nav">
 
         <li class="username"><a class="active" href="home.php"><B>Hi <?php  echo $_SESSION['sess_name']; ?> </B></a></li>
-	<li><a href="history.php">My History</a></li>
+	
 
       </ul>
 
@@ -47,7 +46,7 @@ if(!isset($_SESSION['sess_name'])){
       </ul>
       <ul class="nav navbar-nav navbar-left active">
         <li class="active"><a href="albums.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
-
+	<li><a href="history.php">My History</a></li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
   <li class="active"><a href="search.html"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
@@ -57,7 +56,6 @@ if(!isset($_SESSION['sess_name'])){
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>	<div class="container">
-
 		<h3>
 			<p class="lead">
 				<I>User History</I>
@@ -68,7 +66,7 @@ if(!isset($_SESSION['sess_name'])){
         <?php
 								include ('include/dbConnect.php');
 								
-								$query = "SELECT User.name, Song.title, HistorySong.played_at 
+								$query = "SELECT User.name, Song.song_title, HistorySong.played_at 
 									FROM History, HistorySong, Song, User 
 									WHERE History.history_id = HistorySong.history_id 
 									AND HistorySong.song_id = Song.song_id AND History.user_id = User.user_id";
@@ -92,7 +90,7 @@ if(!isset($_SESSION['sess_name'])){
 										echo "<tr>";
 										echo "<td>" . $row ['name'] . "</td>";
 										echo "<td>" . $row ['name'] . "</td>";
-										echo "<td>" . $row ['title'] . "</td>";
+										echo "<td>" . $row ['song_title'] . "</td>";
 										echo "<td>" . $row ['played_at'] . "</td>";
 										
 										echo "</tr>\n";

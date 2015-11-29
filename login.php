@@ -1,9 +1,4 @@
-<?php
-session_start();
-if(!isset($_SESSION['sess_name'])){
-      header('Location: login.php?err=2');
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,21 +28,7 @@ if(!isset($_SESSION['sess_name'])){
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
 
-        <li class="username"><a class="active" href="#"><B>Hi <?php  echo $_SESSION['sess_name']; ?> </B></a></li>
-	<li><a href="history.php">My History</a></li>
-
-      </ul>
-
-      <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="upload.php">Upload an Album <span class="glyphicon glyphicon-upload" aria-hidden="true"></span></a></li>
-
-      </ul>
-      <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="albums.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
-
-      </ul>
 <ul class="nav navbar-nav navbar-right">
   <li class="active"><a href="search.html"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
   <li><a href="logout.php">logout <span class="glyphicon glyphicon-user" aria-hidden="true"></a></li>
