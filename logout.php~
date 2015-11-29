@@ -1,0 +1,13 @@
+<<<<<<< HEAD
+<?php
+ session_start();
+ session_destroy();
+ header('Location: login.php');
+=======
+<?php 
+session_start();
+unset($_SESSION['sess_userrole']);
+session_destroy();
+header("location:userLogin.php");
+>>>>>>> 03e789a8b21eeac7994e81fad87510ffbfa6ed37
+?>
