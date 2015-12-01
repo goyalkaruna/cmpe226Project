@@ -34,10 +34,7 @@ if(!isset($_SESSION['sess_name'])){
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-
         <li class="username"><a class="active" href="home.php"><B>Hi <?php  echo $_SESSION['sess_name']; ?> </B></a></li>
-	
-
       </ul>
 
       <ul class="nav navbar-nav navbar-left active">
@@ -45,14 +42,13 @@ if(!isset($_SESSION['sess_name'])){
 
       </ul>
       <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="albums.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
-	<li><a href="history.php">My History</a></li>
+        <li class="active"><a href="album.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
+      	<li><a href="history.php">My History</a></li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-  <li class="active"><a href="search.html"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
-  <li><a href="logout.php">logout <span class="glyphicon glyphicon-user" aria-hidden="true"></a></li>
-
-</ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="search.html"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
+        <li><a href="logout.php">logout <span class="glyphicon glyphicon-user" aria-hidden="true"></a></li>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -62,9 +58,9 @@ if(!isset($_SESSION['sess_name'])){
     <p>
         <?php
            include ('include/dbConnect.php');
-		if(isset($_GET["artist_id"])){		 
-		$artist_id = $_GET['artist_id'];
- 		
+		         if(isset($_GET["artist_id"])){
+		             $artist_id = $_GET['artist_id'];
+
                     $query = "SELECT * FROM Song s, ArtistSong sa, Artist a WHERE a.artist_id =  '$artist_id' and a.artist_id = sa.artist_id and sa.song_id = s.song_id";
 
 
@@ -98,67 +94,67 @@ if(!isset($_SESSION['sess_name'])){
                       }
 
                       echo "</table>";
-}
+                    }
 
-}
-}else
-if(isset($_GET["album_id"])){		 
-		$album_id = $_GET['album_id'];
- 		echo $album_id;
+            }
+    }else
+        if(isset($_GET["album_id"])){
+		        $album_id = $_GET['album_id'];
+
                     $query = "SELECT * FROM Song s, AlbumSong sa, Album a, Publisher p, Image i WHERE a.album_id = '$album_id' and a.album_id = sa.album_id and sa.song_id = s.song_id and p.publisher_id = a.publisher_id and a.cover_image_id = i.image_id";
 
                 // We're going to construct an HTML table.
                 print "<table>\n";
-	        
+
                 // Query the database.
                 $data = $con->query($query);
                 $data->setFetchMode(PDO::FETCH_ASSOC);
- 		if ($data){
- 				
-   		//	echo (string)$data[0]['album_id'];
+ 		             if ($data){
+
+   		          //	echo (string)$data[0]['album_id'];
                 // Construct the HTML table row by row.
                 // Start with a header row.
                 $doHeader = true;
-                
+
                 foreach ($data as $row) {
-                   	
-                    // The header row before the first data row.	
+
+                    // The header row before the first data row.
                     if ($doHeader) {
 
                       echo "<table>";
                       echo "<tr><th>Image</th>
                       		<th>Album Name</th>
-				<th>Song Title</th>
-				<th>Duration</th>
-				<th>language</th>
-				<th>Published by</th>
-				<th>Listen</th></tr>" ;
-				
-				 
+                  				<th>Song Title</th>
+                  				<th>Duration</th>
+                  				<th>language</th>
+                  				<th>Published by</th>
+                  				<th>Listen</th></tr>" ;
+
+
                       //	foreach( $row as $data) {
 
-                          
+
                           echo "<td>".$row['album_id']."</td>";
                           echo "<td><img src =".$row['data']."></td>";
                           echo "<td>".$row['album_title']."</td>";
                           echo "<td>".$row['song_title']."</td>";
                           echo "<td>".$row['duration']."</td>";
                           echo "<td>".$row['language']."</td>";
-			  echo "<td>".$row['name']."</td>";
+			                    echo "<td>".$row['name']."</td>";
                           echo "<td><button>Play</button></td>";
                           echo "</tr>\n";
               //        		}
-		
+
                       echo "</table>";
-			} 
-		    else{
-    			echo "doHeader is false";
-			}
-}
-}else  echo "<p> No data present for this combination!!!</p>";
-}else{
-  echo "<p> Album or Artist Id empty!!!</p>";
-}
+			                 }
+		              else{
+    			             echo "doHeader is false";
+			                 }
+                     }
+                   }else  echo "<p> No data present for this combination!!!</p>";
+                 }else{
+                   echo "<p> Album or Artist Id empty!!!</p>";
+                 }
 
 
 

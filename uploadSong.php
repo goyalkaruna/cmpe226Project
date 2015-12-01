@@ -36,7 +36,7 @@ if(!isset($_SESSION['sess_name'])){
       <ul class="nav navbar-nav">
 
         <li class="username"><a class="active" href="home.php"><B>Hi <?php  echo $_SESSION['sess_name']; ?> </B></a></li>
-	
+
 
       </ul>
 
@@ -45,7 +45,7 @@ if(!isset($_SESSION['sess_name'])){
 
       </ul>
       <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="albums.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
+        <li class="active"><a href="album.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
 	<li><a href="history.php">My History</a></li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -69,7 +69,7 @@ include ('include/dbConnect.php');
              $title  = filter_input(INPUT_POST, "title");
              $duration = filter_input(INPUT_POST, "duration");
               $genre  = filter_input(INPUT_POST, "genre");
-              
+
               $video_url = filter_input(INPUT_POST, "video_url");
               $language = filter_input(INPUT_POST, "language");
 
@@ -104,7 +104,9 @@ include ('include/dbConnect.php');
               $msg = "New record created in the song successfully. ";
             //  header("Location: /cmpe226/upload.php");
 
-                }
+          }else{
+            echo "<p>Error while uploading. Try again.</p>";
+          }
 
       ?>
    </body>

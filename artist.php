@@ -77,8 +77,8 @@ if(!isset($_SESSION['sess_name'])){
                         echo "<td>".$row['name']."</td>";
 			echo "<td>".$row['album_title']."</td>";
 			echo "<td>".$row['released_date']."</td>";
-			echo "<td><a href='song.php?artist_id=".$row['artist_id']."'>songs</a></td>"; 
-                 
+			echo "<td><a href='song.php?artist_id=".$row['artist_id']."'>songs</a></td>";
+
                         echo "</tr>\n";
                     }
 

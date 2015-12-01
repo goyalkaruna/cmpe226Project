@@ -30,8 +30,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 <ul class="nav navbar-nav navbar-right">
-  <li class="active"><a href="search.html"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
-  <li><a href="logout.php">logout <span class="glyphicon glyphicon-user" aria-hidden="true"></a></li>
+  <li class="active"><a href="search.php"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
+
 
 </ul>
     </div><!-- /.navbar-collapse -->
@@ -39,8 +39,9 @@
 </nav>
 
 
-      <div class="col-md-6 col-md-offset-3">
-                    <h4></span>Log in with your credentials<span class="glyphicon glyphicon-user"></h4><br/>
+        <div class="col-md-6 col-md-offset-3">
+                    <h4><span class="glyphicon glyphicon-user"></span>Log in with your credentials Or Register if you are a new user. Click <a href="register.php">Register</a></h4><br/>
+
                             <div class="block-margin-top">
                               <?php
 

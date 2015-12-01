@@ -21,6 +21,10 @@
     color:#eeeeee;
 }
 
+a:hover {
+    color: hotpink;
+}
+
 #choices{
   width: 200px;
   height: 200px;
