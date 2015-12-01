@@ -50,7 +50,7 @@ if(!isset($_SESSION['sess_name'])){
   <div class="row">
     <div class="col-lg-4 col-sm-6 col-xs-12">
         <a href="top20.php">
-             <img id="choices"  src="images/top20.jpg" class="thumbnail img-responsive">
+             <img id="choices"  src="images/top20.JPG" class="thumbnail img-responsive">
              <p><B> Block Busters</B></p>
         </a>
     </div>
@@ -80,7 +80,7 @@ if(!isset($_SESSION['sess_name'])){
     </div>
      <div class="col-lg-4 col-sm-6 col-xs-12">
         <a href="jukebox.php">
-             <img id="choices" src="images/myjukebox.JPG" class="thumbnail img-responsive">
+             <img id="choices" src="images/myjukebox.jpg" class="thumbnail img-responsive">
          <p><B> Jukebox</B></p>
         </a>
     </div>
