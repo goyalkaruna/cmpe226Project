@@ -89,7 +89,7 @@ if(!isset($_SESSION['sess_name'])){
                           echo "<td>".$row['duration']."</td>";
                           echo "<td>".$row['language']."</td>";
 
-                          echo "<td><button>Play</button></td>";
+                          echo "<td><a href='player.php?song_id=".$row['song_id']."'>Play</a></td>";
                           echo "</tr>\n";
                       }
 
@@ -141,7 +141,7 @@ if(!isset($_SESSION['sess_name'])){
                           echo "<td>".$row['duration']."</td>";
                           echo "<td>".$row['language']."</td>";
 			                    echo "<td>".$row['name']."</td>";
-                          echo "<td><button>Play</button></td>";
+                          echo "<td><a href='player.php?song_id=".$row['song_id']."'>Play</a></td>";
                           echo "</tr>\n";
               //        		}
 
