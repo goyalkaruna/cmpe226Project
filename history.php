@@ -36,7 +36,7 @@ if(!isset($_SESSION['sess_name'])){
       <ul class="nav navbar-nav">
 
         <li class="username"><a class="active" href="home.php"><B>Hi <?php  echo $_SESSION['sess_name']; ?> </B></a></li>
-	
+
       </ul>
 
       <ul class="nav navbar-nav navbar-left active">
@@ -65,48 +65,48 @@ if(!isset($_SESSION['sess_name'])){
 		<p>
         <?php
 								include ('include/dbConnect.php');
-								
-								$query = "SELECT Song.song_id, Song.title, HistorySong.played_at 
-									FROM History, HistorySong, Song, User 
-									WHERE User.name = :name AND User.email = :email AND History.user_id = User.user_id 
-									AND History.history_id = HistorySong.history_id 
+
+								$query = "SELECT Song.song_id, Song.song_title, HistorySong.played_at
+									FROM History, HistorySong, Song, User
+									WHERE User.name = :name AND User.email = :email AND History.user_id = User.user_id
+									AND History.history_id = HistorySong.history_id
 									AND HistorySong.song_id = Song.song_id
 									ORDER BY 3 DESC";
-								
+
 								$ps = $con->prepare ( $query );
 								$ps->bindParam ( ':name', $_SESSION ['sess_name'] );
 								$ps->bindParam ( ':email', $_SESSION ['sess_email'] );
-								
+
 								// We're going to construct an HTML table.
 								print "<table>\n";
-								
+
 								// Query the database.
 								$ps->execute ();
 								$data = $ps->fetchAll ( PDO::FETCH_ASSOC );
-								
+
 								// Construct the HTML table row by row.
 								// Start with a header row.
 								$doHeader = true;
 								// The header row before the first data row.
 								if ($doHeader) {
-									
+
 									echo "<table>";
 									echo "<tr><th>Song title</th><th>Time Played</th></tr>";
 									foreach ( $data as $row ) {
 										echo "<tr>";
 										echo "<td>" . $row ['song_id'] . "</td>";
-										echo "<td>" . $row ['title'] . "</td>";
+										echo "<td>" . $row ['song_title'] . "</td>";
 										echo "<td>" . $row ['played_at'] . "</td>";
 										echo "<td><a href='player.php?song_id=".$row['song_id']."'>Play Again</a></td>";
 										echo "<td><a href='addsong.php?song_id=".$row['song_id']."'>Add to JukeBox</a></td>";
 										echo "</tr>\n";
 									}
-									
+
 									echo "</table>";
 								} else {
 									echo "<p> Error</p>";
 								}
-								
+
 								?>
     </p>
 	</div>

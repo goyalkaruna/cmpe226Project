@@ -36,7 +36,7 @@ if(!isset($_SESSION['sess_name'])){
       <ul class="nav navbar-nav">
 
         <li class="username"><a class="active" href="home.php"><B>Hi <?php  echo $_SESSION['sess_name']; ?> </B></a></li>
-	
+
       </ul>
 
       <ul class="nav navbar-nav navbar-left active">
@@ -65,64 +65,64 @@ if(!isset($_SESSION['sess_name'])){
 		<p>
         <?php
 								include ('include/dbConnect.php');
-								
+
 								$query = "SELECT User.user_id
 											  FROM User
 											  WHERE User.name = :name AND User.email = :email";
-									
+
 								$ps = $con->prepare ( $query );
 								$ps->bindParam ( ':name', $_SESSION ['sess_name'] );
 								$ps->bindParam ( ':email', $_SESSION ['sess_email'] );
-									
+
 								$ps->execute ();
 								$data = $ps->fetchAll ( PDO::FETCH_ASSOC );
-									
+
 								foreach ( $data as $row ) {
 									$user_id = $row['user_id'];
 								}
-								
-								
-								
-								$query = "SELECT DISTINCT  Song.song_id, UserAlbum.title, Song.title as stitle, UserAlbumSong.user_album_song_id as usa 
-      							FROM Jukebox, JukeBoxUserAlbum , UserAlbum, UserAlbumSong, User, Song 
-      							WHERE Jukebox.user_id = :id AND Jukebox.jukebox_id = JukeBoxUserAlbum.jukebox_id 
-								AND JukeBoxUserAlbum.user_album_id = UserAlbum.user_album_id AND UserAlbum.user_album_id = UserAlbumSong.user_album_id 
+
+
+
+								$query = "SELECT DISTINCT  Song.song_id, UserAlbum.title, Song.song_title as stitle, UserAlbumSong.user_album_song_id as usa
+      							FROM Jukebox, JukeBoxUserAlbum , UserAlbum, UserAlbumSong, User, Song
+      							WHERE Jukebox.user_id = :id AND Jukebox.jukebox_id = JukeBoxUserAlbum.jukebox_id
+								AND JukeBoxUserAlbum.user_album_id = UserAlbum.user_album_id AND UserAlbum.user_album_id = UserAlbumSong.user_album_id
 								AND UserAlbumSong.song_id = Song.song_id
                     				ORDER BY 1 DESC";
-								
+
 								// We're going to construct an HTML table.
 								print "<table>\n";
-								
+
 								$ps = $con->prepare ( $query );
 								$ps->bindParam ( ':id', $user_id );
-									
+
 								$ps->execute ();
 								$data = $ps->fetchAll ( PDO::FETCH_ASSOC );
-								
+
 								// Construct the HTML table row by row.
 								// Start with a header row.
 								$doHeader = true;
-								
+
 								// The header row before the first data row.
 								if ($doHeader) {
-									
+
 									echo "<table>";
 									echo "<tr><th>User Album Name</th><th>Song Name</th><th>User Album Song ID</th></tr>";
 									foreach ( $data as $row ) {
 										echo "<tr>";
 										echo "<td>" . $row ['song_id'] . "</td>";
-										echo "<td>" . $row ['title'] . "</td>";
+										echo "<td>" . $row ['song_title'] . "</td>";
 										echo "<td>" . $row ['stitle'] . "</td>";
 										echo "<td><a href='player.php?song_id=".$row['song_id']."'>Play</a></td>";
 										echo "<td><a href='removesong.php?user_album_song_id=".$row['usa']."'>Remove</a></td>";
 										echo "</tr>\n";
 									}
-									
+
 									echo "</table>";
 								} else {
 									echo "<p> Error</p>";
 								}
-								
+
 								?>
     </p>
 	</div>

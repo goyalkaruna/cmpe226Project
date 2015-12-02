@@ -36,7 +36,7 @@ if(!isset($_SESSION['sess_name'])){
       <ul class="nav navbar-nav">
 
         <li class="username"><a class="active" href="home.php"><B>Hi <?php  echo $_SESSION['sess_name']; ?> </B></a></li>
-	
+
       </ul>
 
       <ul class="nav navbar-nav navbar-left active">
@@ -65,41 +65,41 @@ if(!isset($_SESSION['sess_name'])){
 		<p>
         <?php
 								include ('include/dbConnect.php');
-								
-								$query = "SELECT Song.song_id, Song.title, Review.score, Review.description  FROM Song, Review
+
+								$query = "SELECT Song.song_id, Song.song_title, Review.score, Review.description  FROM Song, Review
 							WHERE Review.song_id =  Song.song_id
-							GROUP BY Song.title, Review.score
+							GROUP BY Song.song_title, Review.score
 							ORDER BY 3 DESC LIMIT 20";
-								
+
 								// We're going to construct an HTML table.
 								print "<table>\n";
-								
+
 								// Query the database.
 								$data = $con->query ( $query );
 								$data->setFetchMode ( PDO::FETCH_ASSOC );
-								
+
 								// Construct the HTML table row by row.
 								// Start with a header row.
 								$doHeader = true;
 									// The header row before the first data row.
 									if ($doHeader) {
-										
+
 										echo "<table>";
 										echo "<tr><th>Song Title</th><th>Review Score</th><th>Review Description</th></tr>";
 										foreach ( $data as $row ) {
 											echo "<tr>";
 											echo "<td>" . $row ['song_id'] . "</td>";
-											echo "<td>" . $row ['title'] . "</td>";
+											echo "<td>" . $row ['song_title'] . "</td>";
 											echo "<td>" . $row ['score'] . "</td>";
 											echo "<td>" . $row ['description'] . "</td>";
 											echo "</tr>\n";
 										}
-										
+
 										echo "</table>";
 									} else {
 										echo "<p> Error</p>";
 									}
-								
+
 								?>
     </p>
 	</div>
