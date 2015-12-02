@@ -44,7 +44,7 @@ if(!isset($_SESSION['sess_name'])){
 
       </ul>
       <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="album.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
+        <li class="active"><a href="myalbum.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
 	<li><a href="history.php">My History</a></li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -91,7 +91,7 @@ if(!isset($_SESSION['sess_name'])){
 								if ($doHeader) {
 
 									echo "<table>";
-									echo "<tr><th>Song title</th><th>Time Played</th></tr>";
+									echo "<tr><th>Song title</th><th>Time Played</th><th>Listen</th><th>Favorites</th></tr>";
 									foreach ( $data as $row ) {
 										echo "<tr>";
 										echo "<td>" . $row ['song_id'] . "</td>";
@@ -108,6 +108,17 @@ if(!isset($_SESSION['sess_name'])){
 								}
 
 								?>
+                <br/>
+                <br/>
+                <div align="center">
+
+                      <a href="upload.php" class="btn btn-success"><span class="glyphicon glyphicon-upload"></span><b> Upload a song!</b></a>
+                      &nbsp;&nbsp;&nbsp;
+                      <a href="search.html" class="btn btn-success"><span class="glyphicon glyphicon-search"></span><b> Search a song!</b></a>
+                      &nbsp;&nbsp;&nbsp;
+                      <a href="jukebox.php" class="btn btn-success"><span class="glyphicon glyphicon-folder-close"></span><b> My Jukebox</b></a>
+
+                </div><br>
     </p>
 	</div>
 </body>

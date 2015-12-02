@@ -42,7 +42,7 @@ if(!isset($_SESSION['sess_name'])){
 
       </ul>
       <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="album.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
+        <li class="active"><a href="myalbum.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
       	<li><a href="history.php">My History</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -53,9 +53,9 @@ if(!isset($_SESSION['sess_name'])){
   </div><!-- /.container-fluid -->
 </nav>
   <div class="container">
-<h3><p class="lead"><I>Songs !!!</I> </p></h3>
 
-    <p>
+
+    <p align="center">
         <?php
            include ('include/dbConnect.php');
 		         if(isset($_GET["artist_id"])){
@@ -97,7 +97,7 @@ if(!isset($_SESSION['sess_name'])){
                     }
 
             }
-    }else
+    }
         if(isset($_GET["album_id"])){
 		        $album_id = $_GET['album_id'];
 
@@ -152,14 +152,49 @@ if(!isset($_SESSION['sess_name'])){
 			                 }
                      }
                    }else  echo "<p> No data present for this combination!!!</p>";
-                 }else{
-                   echo "<p> Album or Artist Id empty!!!</p>";
                  }
 
+if(isset($_GET["genre_id"])){
+    $genre_id = $_GET['genre_id'];
 
+       $query = "SELECT * FROM Song s, Genre g WHERE
+       g.genre_id = $genre_id AND
+       s.genre_id = g.genre_id";
 
-        ?>
-    </p>
-  </div>
+   // We're going to construct an HTML table.
+   print "<table>\n";
+
+   // Query the database.
+   $data = $con->query($query);
+   $data->setFetchMode(PDO::FETCH_ASSOC);
+
+   // Construct the HTML table row by row.
+   // Start with a header row.
+   $doHeader = true;
+   foreach ($data as $row) {
+
+       // The header row before the first data row.
+       if ($doHeader) {
+         echo "<h3><label>".$row['type']."</label></h3>";
+         echo "<table>";
+         echo "<tr><th>Song Title</th><th>Duration</th><th>language</th><th>Listen</th></tr>";
+         foreach( $data as $row) {
+             echo "<tr>";
+             echo "<td>".$row['song_id']."</td>";
+             echo "<td>".$row['song_title']."</td>";
+             echo "<td>".$row['duration']."</td>";
+             echo "<td>".$row['language']."</td>";
+
+             echo "<td><a href='player.php?song_id=".$row['song_id']."'>Play</a></td>";
+             echo "</tr>\n";
+         }
+
+         echo "</table>";
+       }
+
+}
+}
+?>
+</p>
 </body>
 </html>

@@ -34,7 +34,7 @@ if(!isset($_SESSION['sess_name'])){
         <li class="active"><a href="upload.php">Upload an Album <span class="glyphicon glyphicon-upload" aria-hidden="true"></span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="album.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
+        <li class="active"><a href="myalbum.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
 	      <li class="active"><a href="history.php">My History</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -86,7 +86,8 @@ if(!isset($_SESSION['sess_name'])){
     </div>
 
   </div>
-
+</br>
+<div align="right"> <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> App is amazing!</a></div><br>
 
 </div>
 

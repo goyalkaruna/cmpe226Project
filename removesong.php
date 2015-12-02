@@ -47,7 +47,7 @@ if (! isset ( $_SESSION ['sess_name'] )) {
 
 				</ul>
 				<ul class="nav navbar-nav navbar-left active">
-					<li class="active"><a href="album.php">My Albums <span
+					<li class="active"><a href="myalbum.php">My Albums <span
 							class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
 					<li><a href="history.php">My History</a></li>
 				</ul>
@@ -75,28 +75,28 @@ if (! isset ( $_SESSION ['sess_name'] )) {
 
 		<p>
         <?php
-								
+
 								if (isset ( $_GET ["user_album_song_id"] )) {
 									$user_album_song_id = $_GET ['user_album_song_id'];
 									include ('include/dbConnect.php');
-									
+
 									// Construct the HTML table row by row.
 									// Start with a header row.
 									$doHeader = true;
-									
+
 									// The header row before the first data row.
 									if ($doHeader) {
-										
+
 										// Delete From UserAlbumSong
-										
+
 										$sql = "DELETE FROM UserAlbumSong
 												WHERE user_album_song_id = :uasi";
-										
+
 										$ps = $con->prepare ( $sql );
 										$ps->bindParam ( ':uasi', $user_album_song_id );
-										
+
 										$ps->execute ();
-										
+
 										echo "Your song has been removed from your jukebox.";
 									} else {
 										echo "<p> Error</p>";
@@ -105,6 +105,17 @@ if (! isset ( $_SESSION ['sess_name'] )) {
 									echo "<p> Invalid Song!!!</p>";
 								}
 								?>
+								<br/>
+								<br/>
+								<div align="center">
+
+											<a href="upload.php" class="btn btn-success"><span class="glyphicon glyphicon-upload"></span><b> Upload a song!</b></a>
+											&nbsp;&nbsp;&nbsp;
+											<a href="search.html" class="btn btn-success"><span class="glyphicon glyphicon-search"></span><b> Search a song!</b></a>
+											&nbsp;&nbsp;&nbsp;
+											<a href="jukebox.php" class="btn btn-success"><span class="glyphicon glyphicon-folder-close"></span><b> My Jukebox</b></a>
+
+								</div><br>
     </p>
 	</div>
 </body>

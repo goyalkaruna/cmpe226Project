@@ -8,7 +8,7 @@ if(!isset($_SESSION['sess_name'])){
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>IJK(India Korea Japan</title>
+<title>IJK(India Korea Japan)</title>
 
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
@@ -44,7 +44,7 @@ if(!isset($_SESSION['sess_name'])){
 
       </ul>
       <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="album.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
+        <li class="active"><a href="myalbum.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
 	<li><a href="history.php">My History</a></li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -58,7 +58,7 @@ if(!isset($_SESSION['sess_name'])){
 <div class="container">
 		<h3>
 			<p class="lead">
-				<I>Top 20 Songs</I>
+				<I>Block Busters</I>
 			</p>
 		</h3>
 
@@ -101,7 +101,19 @@ if(!isset($_SESSION['sess_name'])){
 									}
 
 								?>
-    </p>
+              </p>
+                <br/>
+                <br/>
+                <div align="center">
+
+                <a href="upload.php" class="btn btn-success"><span class="glyphicon glyphicon-upload"></span><b> Upload a song!</b></a>
+              &nbsp;&nbsp;&nbsp;
+              <a href="search.html" class="btn btn-success"><span class="glyphicon glyphicon-search"></span><b> Search a song!</b></a>
+              &nbsp;&nbsp;&nbsp;
+              <a href="jukebox.php" class="btn btn-success"><span class="glyphicon glyphicon-folder-close"></span><b> My Jukebox</b></a>
+
+                </div>
+
 	</div>
 </body>
 </html>

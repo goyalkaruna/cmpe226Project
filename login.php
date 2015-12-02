@@ -30,7 +30,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 <ul class="nav navbar-nav navbar-right">
-  <li class="active"><a href="search.php"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
+  <li class="active"><a href="search.html"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
 
 
 </ul>

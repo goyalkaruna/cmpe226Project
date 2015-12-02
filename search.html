@@ -36,7 +36,8 @@ if(!isset($_SESSION['sess_name'])){
       <ul class="nav navbar-nav">
 
         <li class="username"><a class="active" href="home.php"><B>Hi <?php  echo $_SESSION['sess_name']; ?> </B></a></li>
-	<li><a href="history.php">My History</a></li>
+
+
       </ul>
 
       <ul class="nav navbar-nav navbar-left active">
@@ -45,7 +46,7 @@ if(!isset($_SESSION['sess_name'])){
       </ul>
       <ul class="nav navbar-nav navbar-left active">
         <li class="active"><a href="myalbum.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
-
+  <li><a href="history.php">My History</a></li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
   <li class="active"><a href="search.html"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
@@ -54,50 +55,50 @@ if(!isset($_SESSION['sess_name'])){
 </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-</nav>
+</nav>><!-- /.container-fluid -->
 
-<?php
-
-header( 'Cache-Control: no-store, no-cache, must-revalidate' );
-header( 'Cache-Control: post-check=0, pre-check=0', false );
-header( 'Pragma: no-cache' );
-include ('include/dbConnect.php');
-session_start();
-
-             $email     = filter_input(INPUT_POST, "email");
-             $password     = filter_input(INPUT_POST, "password");
-
-             if($email&&$password){
-
-             $query = "SELECT * FROM User WHERE email = '$email' AND   password  = '$password'";
-
-                // Fetch the database field names.
-                $result = $con->query($query);
-                $row = $result->fetch(PDO::FETCH_ASSOC);
-
-                if($row <= 0){
-                  print "<p>Username or password is invalid!!<br></p>";
-                }
-                else{
-                $data = $con->query($query);
-                $data->setFetchMode(PDO::FETCH_ASSOC);
-                 session_regenerate_id();
-                $_SESSION['sess_name'] = $row['name'];
-                $_SESSION['sess_email'] = $row['email'];
-                $_SESSION['sess_id'] = $row['user_id'];
-                echo $_SESSION['sess_email'];
-                echo   $_SESSION['sess_name'];
-
-                  session_write_close();
-                 header("Location: /cmpe226/home.php");
-
-              }
-
-              }else
-                die("<p>Please enter username and password!!</p>");
+<form action="search.php"
+       method= "post">
+<div class="container">
+<div class="form-group">
 
 
+  <h3><p class="lead"><I>Search your thought !</I> </p></h3>
+  <form name="create" id="create" method="post" enctype="multipart/form-data">
+  <fieldset align="center">
+            <legend> Search </legend>
+              <div>
+              <label class="col-sm-2 label-sm">
+                  <input type="radio" name="radioB" value="artist" onclick="showhidediv(this);"/><strong> Artist</strong>
+              </label>
+              <label class="col-sm-2 label-sm">
+                  <input type="radio" name="radioB" value="album" onclick="showhidediv(this);"/><strong> Album</strong>
+              </label>
+              <label  class="col-sm-2 label-sm">
+                  <input type="radio" name="radioB" value="tag" onclick="showhidediv(this);"/><strong>Tag</strong>
+              </label><br /> <br /></div></br>
 
-      ?>
-   </body>
+
+              <div id="artist" class ="search" style="display:none;">
+                  <label  class="col-sm-2 label-sm"><strong> Artist</strong>  </label>
+                    <input type="text" name="artist" placeholder="Beyonce"><br /> <br />
+                </div></br>
+                <div id="album" class ="search" style="display:none;">
+                <label  class="col-sm-2 label-sm"><strong> Album</strong>  </label>
+                  <input type="text" name="album" placeholder="Back Street"><br /> <br />
+              </div></br>
+              <div id="tag" class ="search"  style="display:none;">
+              <label  class="col-sm-2 label-sm"><strong>Tag</strong>  </label>
+                <input type="text" name="tag" placeholder="Passion"><br /> <br />
+        </div></br>
+      </form>
+        <p>
+            <input class="btn btn-small btn-primary" type="submit" value="Search">
+            <input class="btn btn-small " onclick="clearForm();" type="reset" value="Reset">
+              </p>
+</fieldset>
+</div>
+</div>
+</form>
+</body>
 </html>

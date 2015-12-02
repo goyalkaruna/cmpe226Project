@@ -44,7 +44,7 @@ if(!isset($_SESSION['sess_name'])){
 
       </ul>
       <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="album.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
+        <li class="active"><a href="myalbum.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
 	<li><a href="history.php">My History</a></li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -98,7 +98,7 @@ if(!isset($_SESSION['sess_name'])){
                                    <input type="text" name="video_url" size="60" placeholder="http://........"><br /> <br /></div>
                                     <div class="col-sm-10">
                                   <p>
-                                      <input class="btn btn-small btn-primary" type="submit" value="Upload">
+                                      <input class="btn btn-small btn-primary" type="submit" value="Upload">&nbsp;&nbsp;&nbsp;
                                       <input class="btn btn-small " onclick="clearForm();" type="reset" value="Reset">
                                         </p>
                                     </div>

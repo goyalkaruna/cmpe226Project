@@ -44,7 +44,7 @@ if(!isset($_SESSION['sess_name'])){
 
       </ul>
       <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="album.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
+        <li class="active"><a href="myalbum.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
 
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -85,8 +85,18 @@ if(!isset($_SESSION['sess_name'])){
                     echo "</table>";
 
     ?>
+          <br/>
+          <br/>
+          <div align="center">
 
-</p>
-  </div>
+                <a href="upload.php" class="btn btn-success"><span class="glyphicon glyphicon-upload"></span><b> Upload a song!</b></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="search.html" class="btn btn-success"><span class="glyphicon glyphicon-search"></span><b> Search a song!</b></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="jukebox.php" class="btn btn-success"><span class="glyphicon glyphicon-folder-close"></span><b> My Jukebox</b></a>
+
+          </div><br>
+          </p>
+            </div>
 </body>
 </html>

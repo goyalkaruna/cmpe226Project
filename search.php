@@ -36,7 +36,7 @@ if(!isset($_SESSION['sess_name'])){
       <ul class="nav navbar-nav">
 
         <li class="username"><a class="active" href="home.php"><B>Hi <?php  echo $_SESSION['sess_name']; ?> </B></a></li>
-	
+
 
       </ul>
 
@@ -45,7 +45,7 @@ if(!isset($_SESSION['sess_name'])){
 
       </ul>
       <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="albums.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
+        <li class="active"><a href="myalbum.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
 	<li><a href="history.php">My History</a></li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -68,7 +68,9 @@ if(!isset($_SESSION['sess_name'])){
 
             if($artist){
 
-                                  $query = "SELECT * FROM Artist where name LIKE '%$artist%'";
+                                  $query = "SELECT * FROM Artist where name LIKE '$artist%' or
+                                   name LIKE '%$artist' or
+                                   name LIKE '%$artist%' group BY name";
                                   // Query the database.
                                   $data = $con->query($query);
                                   $data->setFetchMode(PDO::FETCH_ASSOC);
@@ -78,8 +80,8 @@ if(!isset($_SESSION['sess_name'])){
                                   foreach( $data as $row) {
                                       echo "<tr>";
                                       echo "<td>".$row['artist_id']."</td>";
-                                      echo "<td>".$artist."</td>";
-                                      echo "<td><a>View My Albums</a></td>";
+                                      echo "<td>".$row['name']."</td>";
+                                      echo "<td><a href='song.php?artist_id=".$row['artist_id']."'>View My Songs</a></td>";
                                       echo "</tr>\n";
                                   }
 
@@ -88,9 +90,11 @@ if(!isset($_SESSION['sess_name'])){
 }else
               if($album){
 
-                                    $query = "SELECT * FROM album where title LIKE '%$album%'";
+                                    $query1 = "SELECT * FROM Album where album_title LIKE '$album%'
+                                    or album_title LIKE '%$album' or album_title LIKE '%$album%'
+                                    GROUP BY album_title";
                                     // Query the database.
-                                    $data = $con->query($query);
+                                    $data = $con->query($query1);
                                     $data->setFetchMode(PDO::FETCH_ASSOC);
 
                                     echo "<table>";
@@ -98,7 +102,7 @@ if(!isset($_SESSION['sess_name'])){
                                     foreach( $data as $row) {
                                         echo "<tr>";
                                         echo "<td>".$row['album_id']."</td>";
-                                        echo "<td>".$row['title']."</td>";
+                                        echo "<td>".$row['album_title']."</td>";
                                         echo "<td><a>View Songs</a></td>";
                                         echo "</tr>\n";
                                     }
@@ -108,7 +112,7 @@ if(!isset($_SESSION['sess_name'])){
   }
 else if($tag){
 
-                      $query = "SELECT * FROM tag where keyword LIKE '%$tag%'";
+                      $query = "SELECT * FROM Tag where keyword LIKE '%$tag%'";
                       // Query the database.
                       $data = $con->query($query);
                       $data->setFetchMode(PDO::FETCH_ASSOC);
@@ -131,6 +135,15 @@ else
 
 
         ?>
+        <br/>
+        <br/>
+        <div align="center">
+
+        <a href="upload.php" class="btn btn-success"><span class="glyphicon glyphicon-upload"></span><b> Upload a song!</b></a>
+       &nbsp;&nbsp;&nbsp;
+       <a href="search.html" class="btn btn-success"><span class="glyphicon glyphicon-search"></span><b> Search Again</b></a>
+
+        </div><br>
     </p>
   </div>
 </body>

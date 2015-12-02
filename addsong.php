@@ -47,7 +47,7 @@ if (! isset ( $_SESSION ['sess_name'] )) {
 
 				</ul>
 				<ul class="nav navbar-nav navbar-left active">
-					<li class="active"><a href="album.php">My Albums <span
+					<li class="active"><a href="myalbum.php">My Albums <span
 							class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
 					<li><a href="history.php">My History</a></li>
 				</ul>
@@ -65,72 +65,68 @@ if (! isset ( $_SESSION ['sess_name'] )) {
 		<!-- /.container-fluid -->
 	</nav>
 	<div class="container">
-		<h3>
-			<p class="lead">
-				<I>Add Song</I>
-			</p>
-		</h3>
 
 
 
-		<p>
+
+		<p align = "center">
         <?php
-								
+
 								if (isset ( $_GET ["song_id"] )) {
 									$song_id = $_GET ['song_id'];
 									include ('include/dbConnect.php');
-									
+
 									// Construct the HTML table row by row.
 									// Start with a header row.
 									$doHeader = true;
-									
+
 									// The header row before the first data row.
 									if ($doHeader) {
-										
+
 										// Get user id of login session
 										$query = "SELECT User.user_id
 											  FROM User
 											  WHERE User.name = :name AND User.email = :email";
-										
+
 										$ps = $con->prepare ( $query );
 										$ps->bindParam ( ':name', $_SESSION ['sess_name'] );
 										$ps->bindParam ( ':email', $_SESSION ['sess_email'] );
-										
+
 										$ps->execute ();
 										$data = $ps->fetchAll ( PDO::FETCH_ASSOC );
-										
+
 										foreach ( $data as $row ) {
 											$user_id = $row ['user_id'];
 										}
-										
+
 										// Get user_album_id
-										
+
 										$query = "SELECT user_album_id
 											  FROM UserAlbum
 											  WHERE UserAlbum.user_id = :id";
-										
+
 										$ps = $con->prepare ( $query );
 										$ps->bindParam ( ':id', $user_id );
-										
+
 										$ps->execute ();
 										$data = $ps->fetchAll ( PDO::FETCH_ASSOC );
-										
+
 										foreach ( $data as $row ) {
 											$user_album_id = $row ['user_album_id'];
 										}
-										
+
 										// Insert into UserAlbumSong
-										
+
 										$sql = "INSERT INTO UserAlbumSong(user_album_id, song_id)
 												VALUES (:useralbum, :song)";
-										
+
 										$ps = $con->prepare ( $sql );
 										$ps->bindParam ( ':useralbum', $user_album_id );
 										$ps->bindParam ( ':song', $song_id );
-										
+
 										$ps->execute ();
-										
-										echo "Your song has been added to your jukebox.";
+
+										echo "<label><Strong>Success!!! Song has been added to your jukebox.</strong></label>";
 									} else {
 										echo "<p> Error</p>";
 									}
@@ -138,6 +134,17 @@ if (! isset ( $_SESSION ['sess_name'] )) {
 									echo "<p> Invalid Song!!!</p>";
 								}
 								?>
+								<br/>
+								<br/>
+								<div align="center">
+
+								<a href="upload.php" class="btn btn-success"><span class="glyphicon glyphicon-upload"></span><b> Upload a song!</b></a>
+							&nbsp;&nbsp;&nbsp;
+							<a href="search.html" class="btn btn-success"><span class="glyphicon glyphicon-search"></span><b> Search a song!</b></a>
+							&nbsp;&nbsp;&nbsp;
+							<a href="jukebox.php" class="btn btn-success"><span class="glyphicon glyphicon-folder-close"></span><b> My Jukebox</b></a>
+
+								</div><br>
     </p>
 	</div>
 </body>

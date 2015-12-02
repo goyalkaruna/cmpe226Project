@@ -16,7 +16,7 @@ if(!isset($_SESSION['sess_name'])){
 <link href="MusicApp.css" rel="stylesheet">
 
 </head>
-<body>
+<body >
 
 <nav class="navbar navbar-custom">
   <div class="container-fluid">
@@ -44,7 +44,7 @@ if(!isset($_SESSION['sess_name'])){
 
       </ul>
       <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="album.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
+        <li class="active"><a href="myalbum.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
 	<li><a href="history.php">My History</a></li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -57,8 +57,8 @@ if(!isset($_SESSION['sess_name'])){
 </nav>
 <div class="container">
 		<h3>
-			<p class="lead">
-				<I>User Jukebox</I>
+			<p class="label">
+				<I>USER JUKEBOX</I>
 			</p>
 		</h3>
 
@@ -107,11 +107,11 @@ if(!isset($_SESSION['sess_name'])){
 								if ($doHeader) {
 
 									echo "<table>";
-									echo "<tr><th>User Album Name</th><th>Song Name</th><th>User Album Song ID</th></tr>";
+									echo "<tr><th>User Album Name</th><th>Song Name</th><th>Listen</th><th>Edit</th></tr>";
 									foreach ( $data as $row ) {
 										echo "<tr>";
 										echo "<td>" . $row ['song_id'] . "</td>";
-										echo "<td>" . $row ['song_title'] . "</td>";
+										echo "<td>" . $row ['title'] . "</td>";
 										echo "<td>" . $row ['stitle'] . "</td>";
 										echo "<td><a href='player.php?song_id=".$row['song_id']."'>Play</a></td>";
 										echo "<td><a href='removesong.php?user_album_song_id=".$row['usa']."'>Remove</a></td>";
@@ -119,11 +119,24 @@ if(!isset($_SESSION['sess_name'])){
 									}
 
 									echo "</table>";
+
 								} else {
 									echo "<p> Error</p>";
 								}
 
 								?>
+      <br/>
+      <br/>
+      <div align="center">
+
+            <a href="upload.php" class="btn btn-success"><span class="glyphicon glyphicon-upload"></span><b> Upload a song!</b></a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="search.html" class="btn btn-success"><span class="glyphicon glyphicon-search"></span><b> Search a song!</b></a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="jukebox.php" class="btn btn-success"><span class="glyphicon glyphicon-folder-close"></span><b> My Jukebox</b></a>
+
+      </div><br>
+
     </p>
 	</div>
 </body>
