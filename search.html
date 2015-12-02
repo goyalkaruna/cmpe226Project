@@ -14,7 +14,15 @@ if(!isset($_SESSION['sess_name'])){
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="MusicApp.css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript">
+function showhidediv(rad){
+var rads=document.getElementsByName(rad.name);
 
+document.getElementById('artist').style.display=(rads[0].checked)?'block':'none' ;
+document.getElementById('album').style.display=(rads[1].checked)?'block':'none' ;
+document.getElementById('tag').style.display=(rads[2].checked)?'block':'none' ;
+}
+</script>
 </head>
 <body>
 
