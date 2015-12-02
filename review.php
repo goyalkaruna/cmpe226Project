@@ -67,7 +67,7 @@ if (! isset ( $_SESSION ['sess_name'] )) {
 	<div class="container">
 		<h3>
 			<p class="lead">
-				<I>Player</I>
+				<I>Review</I>
 			</p>
 		</h3>
 
