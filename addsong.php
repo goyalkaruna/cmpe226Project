@@ -75,65 +75,67 @@ if (! isset ( $_SESSION ['sess_name'] )) {
 
 		<p>
         <?php
-								include ('include/dbConnect.php');
 								
-								$song_id = $_SESSION ['song_id'];
-								
-								// Construct the HTML table row by row.
-								// Start with a header row.
-								$doHeader = true;
-								
-								// The header row before the first data row.
-								if ($doHeader) {
+								if (isset ( $_GET ["song_id"] )) {
+									$song_id = $_GET ['song_id'];
+									include ('include/dbConnect.php');
 									
-									// Get user id of login session
-									$query = "SELECT User.user_id
+									// Construct the HTML table row by row.
+									// Start with a header row.
+									$doHeader = true;
+									
+									// The header row before the first data row.
+									if ($doHeader) {
+										
+										// Get user id of login session
+										$query = "SELECT User.user_id
 											  FROM User
 											  WHERE User.name = :name AND User.email = :email";
-									
-									$ps = $con->prepare ( $query );
-									$ps->bindParam ( ':name', $_SESSION ['sess_name'] );
-									$ps->bindParam ( ':email', $_SESSION ['sess_email'] );
-									
-									$ps->execute ();
-									$data = $ps->fetchAll ( PDO::FETCH_ASSOC );
-									
-									foreach ( $data as $row ) {
-										$user_id = $row ['user_id'];
-									}
-									$score = filter_input ( INPUT_POST, "score" );
-									
-									if ($score == "5") {
-										$output = "5";
-									} else if ($score == "4") {
-										$output = "4";
-									} else if ($score == "3") {
-										$output = "3";
-									} else if ($score == "2") {
-										$output = "2";
+										
+										$ps = $con->prepare ( $query );
+										$ps->bindParam ( ':name', $_SESSION ['sess_name'] );
+										$ps->bindParam ( ':email', $_SESSION ['sess_email'] );
+										
+										$ps->execute ();
+										$data = $ps->fetchAll ( PDO::FETCH_ASSOC );
+										
+										foreach ( $data as $row ) {
+											$user_id = $row ['user_id'];
+										}
+										
+										// Get user_album_id
+										
+										$query = "SELECT user_album_id
+											  FROM UserAlbum
+											  WHERE UserAlbum.user_id = :id";
+										
+										$ps = $con->prepare ( $query );
+										$ps->bindParam ( ':id', $user_id );
+										
+										$ps->execute ();
+										$data = $ps->fetchAll ( PDO::FETCH_ASSOC );
+										
+										foreach ( $data as $row ) {
+											$user_album_id = $row ['user_album_id'];
+										}
+										
+										// Insert into UserAlbumSong
+										
+										$sql = "INSERT INTO UserAlbumSong(user_album_id, song_id)
+												VALUES (:useralbum, :song)";
+										
+										$ps = $con->prepare ( $sql );
+										$ps->bindParam ( ':useralbum', $user_album_id );
+										$ps->bindParam ( ':song', $song_id );
+										
+										$ps->execute ();
+										
+										echo "Your song has been added to your jukebox.";
 									} else {
-										$output = "1";
+										echo "<p> Error</p>";
 									}
-									
-									$score_out = ( int ) $output;
-									
-									$description = filter_input ( INPUT_POST, "description" );
-									
-									$sql = "INSERT INTO Review(score, description, user_id, song_id)
-												VALUES (:score, :description, :user, :song)";
-									
-									$ps = $con->prepare ( $sql );
-									$ps->bindParam ( ':score', $score_out );
-									$ps->bindParam ( ':description', $description );
-									$ps->bindParam ( ':user', $user_id );
-									$ps->bindParam ( ':song', $song_id );
-									
-									$ps->execute ();
-									
-									echo "Your review has been created.";
-									
-								}else {
-									echo "<p> Error</p>";
+								} else {
+									echo "<p> Invalid Song!!!</p>";
 								}
 								?>
     </p>

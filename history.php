@@ -97,7 +97,8 @@ if(!isset($_SESSION['sess_name'])){
 										echo "<td>" . $row ['song_id'] . "</td>";
 										echo "<td>" . $row ['title'] . "</td>";
 										echo "<td>" . $row ['played_at'] . "</td>";
-										
+										echo "<td><a href='player.php?song_id=".$row['song_id']."'>Play Again</a></td>";
+										echo "<td><a href='addsong.php?song_id=".$row['song_id']."'>Add to JukeBox</a></td>";
 										echo "</tr>\n";
 									}
 									

@@ -61,6 +61,29 @@ if(!isset($_SESSION['sess_name'])){
 				<I>Player</I>
 			</p>
 		</h3>
+		
+				<form action="review.php" method="post">
+			<fieldset>
+
+				<p>
+					<label>Score: </label> <input type="radio" name="score" value="5"
+						checked /> 5 <input type="radio" name="score" value="4" /> 4 <input
+						type="radio" name="score" value="3" /> 3 <input type="radio"
+						name="score" value="2" /> 2 <input type="radio" name="score"
+						value="1" /> 1
+				</p>
+
+				<p>
+					<label>Description:</label>
+					<textarea rows="4" cols="50" name="description"
+						placeholder="Details of your review!"></textarea>
+				</p>
+				<p>
+					<input type="submit" value="Submit" />
+					<button onclick="#">Cancel</button>
+				</p>
+			</fieldset>
+		</form>
 
 		<p>
         <?php
@@ -68,6 +91,8 @@ if(!isset($_SESSION['sess_name'])){
         if(isset($_GET["song_id"])){
         	$song_id = $_GET['song_id'];
 								include ('include/dbConnect.php');
+								
+								$_SESSION['song_id'] = $song_id;
 								
 								$query = "SELECT data 
 										  FROM Video, Song
@@ -98,7 +123,7 @@ if(!isset($_SESSION['sess_name'])){
 										echo "<tr>";
 										echo "<td>" . $row ['data'] . "</td>";
 										echo "<td>" . $row ['data'] . "</td>";
-										echo "<td><a href='review.php?song_id= $song_id'>Review</a></td>";
+										echo "<td><a href='addsong.php?song_id= $song_id'>Add to Jukebox</a></td>";
 										
 										echo "</tr>\n";
 										
