@@ -51,7 +51,7 @@
         <?php
               include ('include/dbConnect.php');
 
-                    $query = "SELECT * FROM genre";
+                    $query = "SELECT * FROM Genre";
                     // Query the database.
                     $data = $con->query($query);
                     $data->setFetchMode(PDO::FETCH_ASSOC);

@@ -31,11 +31,12 @@ if(!isset($_SESSION['sess_name'])){
       </ul>
 
       <ul class="nav navbar-nav navbar-left active">
-        <li class="active"><a href="upload.php">Upload an Album <span class="glyphicon glyphicon-upload" aria-hidden="true"></span></a></li>
+        <li class="active"><a href="upload.php">Upload a Song <span class="glyphicon glyphicon-upload" aria-hidden="true"></span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-left active">
         <li class="active"><a href="myalbum.php">My Albums <span class="glyphicon glyphicon-folder" aria-hidden="true"></span></a></li>
 	      <li class="active"><a href="history.php">My History</a></li>
+        <li class="active"><a href="historyDW.php">Data Warehousing</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="search.html"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>

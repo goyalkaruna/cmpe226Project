@@ -11,7 +11,7 @@
 <link href="MusicApp.css" rel="stylesheet">
 
 </head>
-<body>
+<body align="center">
 
 <nav class="navbar navbar-custom">
 	<div class="container-fluid">
@@ -31,8 +31,7 @@
 
 <ul class="nav navbar-nav navbar-right">
 	<li class="active"><a href="search.html"   role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
-	<li><a href="login.php">Login</a> <li>
-
+  <li ><a href="login.php">Login</a></li>
 
 </ul>
 		</div><!-- /.navbar-collapse -->
@@ -43,20 +42,17 @@
 
 
 
-<form action="" method="POST" class="form-signin col-md-4 col-md-offset-4" role="form">
-	 <fieldset>
-    <legend class="label">Registration Form <span class="glyphicon glyphicon-user"></span></legend>
 
-	<input type="text" name="name" class="form-control" placeholder="your name" required autofocus><br/>
-	<input type="text" name="address" class="form-control" placeholder="your addess" required><br/>
-		<input type="text" name="email" class="form-control" placeholder="abc@example.com" required autofocus><br/>
-		<input type="password" name="pass" class="form-control" placeholder="Password" required><br/>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button><br/>
-
-	</fieldset>
-</form>
-
+	<form action="" method="POST">
+		<div><h3>Registration Form</h3></div></br>
+	<p><label>	Name: </label> <input type="text" name="name"></p><br />
+	<p><label>	Address:</label> <input type="text" name="address"></p><br />
+	<p><label>	Email: </label><input type="text" name="email"></p><br />
+	<p><label>	Password:</label> <input type="password" name="pass"></p><br />
+		<input type="submit" value="Register" name="submit" />
+	</form>
 <?php
+include ('include/dbConnect.php');
 if (isset ( $_POST ["submit"] ))
 {
 
@@ -68,33 +64,21 @@ if (isset ( $_POST ["submit"] ))
 		$pass = $_POST ['pass'];
 
 
-	 include ('include/dbConnect.php');
-		$query = mysql_query ( "SELECT * FROM User WHERE email = '$email'" );
-		$numrows = mysql_num_rows ( $query );
-		if ($numrows == 0) {
+
+
 			$sql = "INSERT INTO User(name, address, email, password) VALUES('$name', '$address', '$email','$pass')";
 
-			$result = mysql_query ( $sql );
+		$con->exec($sql);
 
-			if ($result)
-			{
-				echo "Account Successfully Created";
-				header('Location: login.php');
-			}
-			else
-			{
-				echo "Failure!";
-			}
-		} else
-		{
-			echo "That username already exists! Please try again with another.";
-		}
-	}
-	else
-	{
-		echo "All fields are required!";
-	}
+				echo "<p>Account Successfully Created.</p>";
+				header('Location:login.php');
+
+
 }
+}
+
+
+
 ?>
 
 </body>
